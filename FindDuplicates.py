@@ -2,9 +2,10 @@
 
 from os import walk, remove, stat
 from os.path import join as joinpath
-from md5 import md5
+#from md5 import md5
+from hashlib import md5
 import threading
-import Queue
+from queue import Queue
 import time
 import sys
 
@@ -61,8 +62,8 @@ class Updater(threading.Thread):
                 #if queue is empty and scan is finished then stop this thread
                 if self._finished_scan[0] == 1:
                     self._time_duration = time.time() - self._time_duration
-                    print  'Finished in ' + repr(self._time_duration) + ' seconds!'
-		    self._updateFunc()
+                    print ('Finished in ' + repr(self._time_duration) + ' seconds!')
+                    self._updateFunc()
                     break
                 else:
                     continue
